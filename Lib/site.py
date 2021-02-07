@@ -536,6 +536,9 @@ def venv(known_paths):
         else:
             PREFIXES = [sys.prefix]
             ENABLE_USER_SITE = False
+    elif 'PYTHONVENV' in env:
+        sys.prefix = sys.exec_prefix = os.path.abspath(env['PYTHONVENV'])
+        addsitepackages(known_paths, [sys.prefix])
 
     return known_paths
 
